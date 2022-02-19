@@ -1,6 +1,6 @@
 seedSize=7
-moduls = 321
-generator = 123
+moduls = 929
+generator = 159
 def functionL(seedSize):
     return seedSize**2 - 2*seedSize +1
 def functionH(firstHalf,secondHalf):
