@@ -1,13 +1,15 @@
-seedSize=7
-moduls = 929
-generator1 = 159
-generator2 = 234
+import secrets
+seedSize=15
+moduls1 = 929
+moduls2 = 719
+generator1 = 234
+generator2 = 557
 def functionH(firstHalf,secondHalf,flag):
     if flag==1:
         #first convert firstHalfBinary to  number
         n = int(firstHalf,2)
         #to cal g^x % mod and convert it to binaryString
-        p = bin(pow(generator1,n) % moduls)
+        p = bin(pow(generator1,n) % moduls1)
         p = p.replace('0b','')
         #now to fill the 0 from front
         fillSize = seedSize - len(p)
@@ -17,7 +19,7 @@ def functionH(firstHalf,secondHalf,flag):
         #first convert firstHalfBinary to  number
         n = int(firstHalf,2)
         #to cal g^x % mod and convert it to binaryString
-        p = bin(pow(generator2,n) % moduls)
+        p = bin(pow(generator2,n) % moduls2)
         p = p.replace('0b','')
         #now to fill the 0 from front
         fillSize = seedSize - len(p)
@@ -45,7 +47,7 @@ def pseudoFunction(message,key):
         else:
             key = functionG(key,1)
     return key
-message = input()
+message =  str(secrets.randbits(1000))#1010 #randomness increase 
 seed = input()
 print(pseudoFunction(message,seed))
 

@@ -28,7 +28,7 @@ def functionG(seed):
         result += binaryString[-1]#last bit
         binaryString = binaryString[:-1]#ignoring last bit
     return result
-seed = input()
+seed = input()#key
 print(functionG(seed))
 
 
