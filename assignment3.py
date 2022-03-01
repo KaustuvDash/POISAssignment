@@ -47,8 +47,11 @@ def pseudoFunction(message,key):
         else:
             key = functionG(key,1)
     return key
-message =  str(secrets.randbits(1000))#1010 #randomness increase 
+#message =  str(secrets.randbits(1000))#1010 #randomness increase 
+print("enter seed")
 seed = input()
+print("enter message")
+message = input()
 counter = secrets.randbits(10)#10 bits 
 counter = bin(counter).replace("0b", "")#convert that 10 bits to binary
 
