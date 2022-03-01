@@ -1,28 +1,35 @@
 import secrets
-seedSize=15
-moduls1 = 929
-moduls2 = 719
-generator1 = 234
-generator2 = 557
+import random
+moduls1 = 19
+moduls2 = 29
+generator1 = 2
+generator2 = 2
+def rand_key(p):
+    key1 = ""
+    for i in range(p):
+        temp = str(random.randint(0, 1))
+        key1 += temp
+    return(key1)
 def functionH(firstHalf,secondHalf,flag):
     if flag==1:
         #first convert firstHalfBinary to  number
         n = int(firstHalf,2)
         #to cal g^x % mod and convert it to binaryString
-        p = bin(pow(generator1,n) % moduls1)
+        p = bin(pow(generator1,n,moduls1))
         p = p.replace('0b','')
         #now to fill the 0 from front
-        fillSize = seedSize - len(p)
+        #print(len(p))
+        fillSize = len(message) - len(p)
         for i in range(fillSize):
             p = '0'+p
     else:
         #first convert firstHalfBinary to  number
         n = int(firstHalf,2)
         #to cal g^x % mod and convert it to binaryString
-        p = bin(pow(generator2,n) % moduls2)
+        p = bin(pow(generator2,n,moduls2))
         p = p.replace('0b','')
         #now to fill the 0 from front
-        fillSize = seedSize - len(p)
+        fillSize = len(message) - len(p)
         for i in range(fillSize):
             p = '0'+p
     hard_core_bit = 0
@@ -32,7 +39,7 @@ def functionH(firstHalf,secondHalf,flag):
 def functionG(seed,flag):
     result=''
     binaryString = seed
-    for i in range(seedSize):#looping through length of seed size
+    for i in range(len(message)):#looping through length of seed size
         index = int(len(binaryString)/2)
         firstHalf = binaryString[:index]
         secondHalf = binaryString[index:]
@@ -44,11 +51,12 @@ def pseudoFunction(message,key):
     for i in range(len(message)-1,-1,-1):
         if(message[i] == '0'):
             key = functionG(key,0)
+            #len key should be equal to lenght of message
         else:
             key = functionG(key,1)
     return key
-message =  str(secrets.randbits(1000))#1010 #randomness increase 
+message = rand_key(200)#10 #randomness increase 
 seed = input()
-print(pseudoFunction(message,seed))
-
+print(pseudoFunction(message,seed))#msg,key
+#prf input n bit number output n bit number 
 

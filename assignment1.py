@@ -1,4 +1,4 @@
-seedSize=7
+seedSize=16
 moduls = 929
 generator = 159
 def functionL(seedSize):
@@ -7,7 +7,7 @@ def functionH(firstHalf,secondHalf):
     #first convert firstHalfBinary to  number
     n = int(firstHalf,2)
     #to cal g^x % mod and convert it to binaryString
-    p = bin(pow(generator,n) % moduls)
+    p = bin(pow(generator,n) % moduls)#y = g^x mod p assumption given y,g,p you can not find x
     p = p.replace('0b','')
     #now to fill the 0 from front
     fillSize = seedSize - len(p)
@@ -30,5 +30,5 @@ def functionG(seed):
     return result
 seed = input()#key
 print(functionG(seed))
-
+#input n bit number output funL bit number
 
