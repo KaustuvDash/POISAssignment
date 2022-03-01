@@ -67,7 +67,7 @@ def pseudoFunction(message,key):
 print("enter seed")
 seed = input()
 # print("enter message")
-message = rand_key(192)
+message = rand_key(200)
 counter = secrets.randbits(64)#gives a number which binary conversion is 10 bits 
 counter = bin(counter).replace("0b", "")#convert that 10 bits to binary
 
@@ -85,18 +85,18 @@ for i in range(0,msglength,64):
         out = out[0:64]
     else:
         out = out.zfill(64)#else prepand 0 
-
     counter = incrementCounterOne(counter)
-
     if(msglength < 64):
         # temp = int(out) ^ int(message[i:i+64-1])
-        temp = xor(out,message[i:i+64-1])
+        temp = xor(out,message[i:msglength-1].zfill(0))
     else:
-        temp = xor(out,message[i:i+64]) 
-        print(temp)
-
+        if(msglength-i) < 64:
+            temp = xor(out,message[i:msglength-1].zfill(64))
+        else:
+            temp = xor(out,message[i:i+64]) 
+            #print(temp)
     temp = temp.zfill(64)
     # print("temp len",len(temp))
     res += str(temp)
     # print("res len",len(res))
-print(res)
+print(len(res))

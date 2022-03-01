@@ -57,6 +57,6 @@ def pseudoFunction(message,key):
     return key
 message = rand_key(200)#10 #randomness increase 
 seed = input()
-print(pseudoFunction(message,seed))#msg,key
+print(len(pseudoFunction(message,seed)))#msg,key
 #prf input n bit number output n bit number 
 
