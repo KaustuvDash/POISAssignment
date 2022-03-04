@@ -63,7 +63,8 @@ def pseudoFunction(message,key):
         else:
             key = functionG(key,1)
     return key
-message = rand_key(300)#1010 #randomness increase 
+#message = rand_key(300)#1010 #randomness increase 
+message = "10010101111001010111100000000000000000000000000000000000000000000000000000000000000000"
 seed = input()
 msglength = len(message)
 result=""
